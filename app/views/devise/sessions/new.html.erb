@@ -14,6 +14,7 @@
     </div>
   </div>
   <!-- Breadcroumbs end -->
+  
   <!-- Customer login Start -->
   <div class="wshipping-content-block">
     <div class="container">
@@ -25,28 +26,31 @@
                 <i class="fa fa-lock"></i>
               </div>
               <h4>Welcome To your account</h4>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-              <a href="#/work/themeforest/w-shipping/customer-login#">Create A new Account</a>
+              <p>Canadian multinational conglomerate holding company focused on transportation, 
+              e-commerce and services based in Memphis, Tennessee.</p>
+              <%= link_to "Create new account", new_registration_path(resource_name), class: "btn btn-outline-success btn-lg btn-block" %>
             </div>
           </div>
           <div class="col-12 col-md-6 col-lg-6">
             <div class="customer-login-block">
               <h2>Login To Your Account</h2>
-              <form action="#/work/themeforest/w-shipping/customer-login.html">
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
                 <div class="form-group">
-                  <label>Email address:</label>
-                  <input type="email" class="form-control">
+                  <%= f.label :email %>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
                 </div>
                 <div class="form-group">
-                  <label>Password:</label>
-                  <input type="password" class="form-control">
+                  <%= f.label :password %>
+                  <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
                 </div>
-                <div class="checkbox">
-                  <input type="checkbox" name="remember" id="remember" class="css-checkbox">
-                  <label for="remember" class="css-label">Remember me</label>
-                  <a href="#/work/themeforest/w-shipping/customer-login#" title="" class="forgot-pass">Forgot your password?</a>
+                <% if devise_mapping.rememberable? %>
+                  <div class="checkbox">
+                    <%= f.check_box :remember_me, class: "checkbox", id: "remember" %>
+                    <%= f.label :remember_me, class: "css-label" %>
+                  <% end %>
+                  <%= link_to "Forgot your password?", new_password_path(resource_name), class: "forgot-pass" %>
                 </div>
-                <button type="submit" class="btn btn-submit">Login</button>
+                <%= f.submit "Log in", class: "btn btn-submit btn-danger" %>
               </form>
             </div>
           </div>
@@ -55,3 +59,4 @@
     </div>
   </div>
   <!-- Customer login end -->
+<% end %>

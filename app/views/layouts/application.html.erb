@@ -2,26 +2,18 @@
 <html>
   <head>
     <title>Freight</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width,initial-scale=1"><%= csrf_meta_tags %><%= csp_meta_tag %>
     <!-- Stylesheet CSS -->
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
     <!-- jQuery library -->
+    <script src="https://web24service.com/work/themeforest/w-shipping/assets/js/jquery-3.4.1.min.js" ></script>
+    <script src="https://web24service.com/work/themeforest/w-shipping/assets/js/js.js" ></script>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
   </head>
-
   <body>
     <div class="main-wrapper">
-      <%= render 'layouts/header' %>
-
-      <%= yield %>
-
-
-      <%= render 'layouts/footer' %>
-    </div>
+    <%= render 'layouts/header' %>
+    <%= yield %>
+    <%= render 'layouts/footer' %> </div>
   </body>
 </html>

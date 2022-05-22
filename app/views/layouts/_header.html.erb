@@ -1,56 +1,57 @@
 <!-- Main Wrapper Start -->
 <div class="main-wrapper">
-
-<header class="for-sticky">
+  <header class="for-sticky">
     <!-- Header top area start -->
-	<div class="header-top-area">
+    <div class="header-top-area">
       <div class="container">
         <div class="row">
           <div class="col-12 col-lg-8">
             <div class="top-contact">
-              <a href="#"><i class="fa fa-envelope"></i> info@freightrium.com </a>
-                <a href="#"><i class="fa fa-phone"></i> +88 1234 56789 </a>
-                  <a href="#"><i class="far fa-clock"></i> 9:00AM to 8:00PM</a>
+              <a href="#">
+                <i class="fa fa-envelope"></i> info@freightrium.com </a>
+              <a href="#">
+                <i class="fa fa-phone"></i> +88 1234 56789 </a>
+              <a href="#">
+                <i class="far fa-clock"></i> 9:00AM to 8:00PM </a>
             </div>
           </div>
           <div class="col-12 col-lg-4 d-flex justify-content-center justify-content-lg-end">
             <div class="top-menu">
               <ul>
-                <li>
-									<i class="fas fa-sign-in-alt"></i>
-									<%= link_to "Login", login_path %>
-								</li>
-                <li>
-									<i class="fa fa-unlock-alt"></i>
-									<%= link_to "Registration", register_path %>
-								</li>
+                <% if current_user %>
+                  <li>
+                    <i class="fas fa-sign-in-alt"></i>
+                    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+                  </li>
+                  <li>
+                    <i class="fa fa-unlock-alt"></i>
+                    <%= link_to "Dashboard", edit_user_registration_path %>
+                  </li>
               </ul>
-            </div>
-            <div class="language">
-              <ul>
-                <li><a href="#" title="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="./images/flag-1.png" alt=""> EN</a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a href="#" title=""><%= image_tag("flag-1.png", :alt => "EN (uk)") %></a>
-                      </li>
-                  </ul>
+                <% else %>
+              <ul>  
+                <li>
+                  <i class="fas fa-sign-in-alt"></i>
+                  <%= link_to "Login", new_user_session_path %>
+                </li>
+                <li>
+                  <i class="fa fa-unlock-alt"></i>
+                  <%= link_to "Register", new_user_registration_path %>
                 </li>
               </ul>
             </div>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
     <!-- Header top area End -->
-
     <!-- Header area start -->
-	<div class="header-area">
+    <div class="header-area">
       <div class="container">
         <!-- Site logo Start -->
         <div class="logo">
-          <a href="<%= root_path(@home) %>" title="Freightrium">
-						<%= image_tag("logo.png", :alt => "Freightrium") %>
-					</a>
+          <a href="<%= root_path(@home) %>" title="Freightrium"><%= image_tag("logo.png", :alt => "Freightrium") %> </a>
         </div>
         <!-- Site logo end -->
         <div class="mobile-menu-wrapper">
@@ -64,121 +65,195 @@
               </span>
             </a>
             <ul class="slicknav_nav slicknav_hidden" aria-hidden="true" role="menu" style="display: none;">
-             <li class="nav-active slicknav_collapsed slicknav_parent">
-               <a href="<%= root_path(@home) %>" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;">
-                 <a href="<%= root_path(@home) %>" tabindex="-1">Home</a>
-                 <span class="slicknav_arrow">►</span>
-             </a>
-             </li>
-             <li class="slicknav_collapsed slicknav_parent">
-               <a href="<%= service_path(@service) %>" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;">
-                 <a href="<%= service_path(@service) %>" tabindex="-1">Services</a>
-                 <span class="slicknav_arrow">►</span>
-               </a>
-               <ul role="menu" class="slicknav_hidden" aria-hidden="true" style="display: none;">
-                 <li><a href="<%= air_freight_path(@air_freight) %>" role="menuitem" tabindex="-1">Air Freight Shipping</a></li>
-                 <li><a href="<%= ocean_shipping_path(@ocean_shipping) %>" role="menuitem" tabindex="-1">Ocean Freight Shipping</a></li>
-                 <li><a href="<%= car_shipping_path(@car_shipping) %>" role="menuitem" tabindex="-1">Car Shipping</a></li>
+              <li class="nav-active slicknav_collapsed slicknav_parent">
+                <a href="<%= root_path(@home) %>" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;">
+                  <a href="<%= root_path(@home) %>" tabindex="-1">Home </a>
+                  <span class="slicknav_arrow">►</span>
+                </a>
+              </li>
+              <li class="slicknav_collapsed slicknav_parent">
+                <a href="<%= service_path(@service) %>" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;">
+                  <a href="<%= service_path(@service) %>" tabindex="-1">Services </a>
+                  <span class="slicknav_arrow">►</span>
+                </a>
+                <ul role="menu" class="slicknav_hidden" aria-hidden="true" style="display: none;">
+                  <li>
+                    <a href="<%= air_freight_path(@air_freight) %>" role="menuitem" tabindex="-1">Air Freight Shipping </a>
+                  </li>
+                  <li>
+                    <a href="<%= ocean_shipping_path(@ocean_shipping) %>" role="menuitem" tabindex="-1">Ocean Freight Shipping </a>
+                  </li>
+                  <li>
+                    <a href="<%= car_shipping_path(@car_shipping) %>" role="menuitem" tabindex="-1">Car Shipping </a>
+                  </li>
                 </ul>
-             </li>
-             <li class="slicknav_collapsed slicknav_parent">
-               <a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;">
-                 <a href="#" tabindex="-1">Shipping</a>
-                 <span class="slicknav_arrow">►</span>
-               </a><ul role="menu" class="slicknav_hidden" aria-hidden="true" style="display: none;">
-                 <li><a href="#create-shipping" role="menuitem" tabindex="-1">Create New Shipment</a></li>
-                 <li><a href="#current-shipment" role="menuitem" tabindex="-1">Current Shipment list</a></li>
-                 <li><a href="#shipment-history" role="menuitem" tabindex="-1">Shipment History</a></li>
+              </li>
+              <li class="slicknav_collapsed slicknav_parent">
+                <a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;">
+                  <a href="#" tabindex="-1">Shipping</a>
+                  <span class="slicknav_arrow">►</span>
+                </a>
+                <ul role="menu" class="slicknav_hidden" aria-hidden="true" style="display: none;">
+                  <li>
+                    <a href="#create-shipping" role="menuitem" tabindex="-1">Create New Shipment</a>
+                  </li>
+                  <li>
+                    <a href="#current-shipment" role="menuitem" tabindex="-1">Current Shipment list</a>
+                  </li>
+                  <li>
+                    <a href="#shipment-history" role="menuitem" tabindex="-1">Shipment History</a>
+                  </li>
                 </ul>
-             </li>
-             <li class="slicknav_collapsed slicknav_parent">
-               <a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;">
-                 <a href="#" tabindex="-1">Tracking</a>
-                 <span class="slicknav_arrow">►</span>
-               </a>
-               <ul role="menu" class="slicknav_hidden" aria-hidden="true" style="display: none;">
-                 <li><a href="#customer-login" role="menuitem" tabindex="-1">Customer Login</a></li>
-                 <li><a href="#customer-register" role="menuitem" tabindex="-1">Customer Register</a></li>
-                 <li><a href="#tracking" role="menuitem" tabindex="-1">Tracking</a></li>
-                 <li><a href="#track-result" role="menuitem" tabindex="-1">Your shipment progress</a></li>
+              </li>
+              <li class="slicknav_collapsed slicknav_parent">
+                <a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;">
+                  <a href="#" tabindex="-1">Tracking</a>
+                  <span class="slicknav_arrow">►</span>
+                </a>
+                <ul role="menu" class="slicknav_hidden" aria-hidden="true" style="display: none;">
+                  <li>
+                    <a href="#customer-login" role="menuitem" tabindex="-1">Customer Login</a>
+                  </li>
+                  <li>
+                    <a href="#customer-register" role="menuitem" tabindex="-1">Customer Register</a>
+                  </li>
+                  <li>
+                    <a href="#tracking" role="menuitem" tabindex="-1">Tracking</a>
+                  </li>
+                  <li>
+                    <a href="#track-result" role="menuitem" tabindex="-1">Your shipment progress</a>
+                  </li>
                 </ul>
-             </li>
-             <li class="slicknav_collapsed slicknav_parent">
-               <a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;">
-                 <a href="#" tabindex="-1">Blog</a>
-                 <span class="slicknav_arrow">►</span>
-               </a>
-               <ul role="menu" class="slicknav_hidden" aria-hidden="true" style="display: none;">
-                 <li><a href="#blog-page" role="menuitem" tabindex="-1">Blog left sidebar</a></li>
-                 <li><a href="#blog-another-page" role="menuitem" tabindex="-1">Blog right sidebar</a></li>
-                 <li><a href="#single-blog" role="menuitem" tabindex="-1">Single Blog</a></li>
-              </ul>
-             </li>
-             <li class="slicknav_collapsed slicknav_parent">
-               <a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;">
-                 <a href="#" tabindex="-1">pages</a>
-                 <span class="slicknav_arrow">►</span>
-               </a>
-               <ul role="menu" class="slicknav_hidden" aria-hidden="true" style="display: none;">
-                 <li><a href="#about" role="menuitem" tabindex="-1">About Us</a></li>
-                 <li><a href="#media" role="menuitem" tabindex="-1">Media &amp; Publications</a></li>
-                 <li><a href="#freight-gallery" role="menuitem" tabindex="-1">Freight Gallery</a></li>
-                 <li><a href="#image-gallery" role="menuitem" tabindex="-1">Image Gallery</a></li>
-                 <li><a href="#typography" role="menuitem" tabindex="-1">Typography</a></li>
-                 <li><a href="#button-accordion" role="menuitem" tabindex="-1">Button &amp; Accordion</a></li>
-                 <li><a href="#community" role="menuitem" tabindex="-1">Shipping Community</a></li>
-                 <li><a href="#404" role="menuitem" tabindex="-1">Error 404</a></li>
-                 <li><a href="#sitemap" role="menuitem" tabindex="-1">Site Map</a></li>
-                 <li><a href="#coming-soon" role="menuitem" tabindex="-1">Coming Soon</a></li>
+              </li>
+              <li class="slicknav_collapsed slicknav_parent">
+                <a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;">
+                  <a href="#" tabindex="-1">Blog</a>
+                  <span class="slicknav_arrow">►</span>
+                </a>
+                <ul role="menu" class="slicknav_hidden" aria-hidden="true" style="display: none;">
+                  <li>
+                    <a href="#blog-page" role="menuitem" tabindex="-1">Blog left sidebar</a>
+                  </li>
+                  <li>
+                    <a href="#blog-another-page" role="menuitem" tabindex="-1">Blog right sidebar</a>
+                  </li>
+                  <li>
+                    <a href="#single-blog" role="menuitem" tabindex="-1">Single Blog</a>
+                  </li>
                 </ul>
-             </li>
-             <li><a href="#contact" role="menuitem" tabindex="-1">Contact Us</a></li>
-          </ul>
+              </li>
+              <li class="slicknav_collapsed slicknav_parent">
+                <a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;">
+                  <a href="#" tabindex="-1">pages</a>
+                  <span class="slicknav_arrow">►</span>
+                </a>
+                <ul role="menu" class="slicknav_hidden" aria-hidden="true" style="display: none;">
+                  <li>
+                    <a href="#about" role="menuitem" tabindex="-1">About Us</a>
+                  </li>
+                  <li>
+                    <a href="#media" role="menuitem" tabindex="-1">Media &amp; Publications</a>
+                  </li>
+                  <li>
+                    <a href="#freight-gallery" role="menuitem" tabindex="-1">Freight Gallery</a>
+                  </li>
+                  <li>
+                    <a href="#image-gallery" role="menuitem" tabindex="-1">Image Gallery</a>
+                  </li>
+                  <li>
+                    <a href="#typography" role="menuitem" tabindex="-1">Typography</a>
+                  </li>
+                  <li>
+                    <a href="#button-accordion" role="menuitem" tabindex="-1">Button &amp; Accordion</a>
+                  </li>
+                  <li>
+                    <a href="#community" role="menuitem" tabindex="-1">Shipping Community</a>
+                  </li>
+                  <li>
+                    <a href="#404" role="menuitem" tabindex="-1">Error 404</a>
+                  </li>
+                  <li>
+                    <a href="#sitemap" role="menuitem" tabindex="-1">Site Map</a>
+                  </li>
+                  <li>
+                    <a href="#coming-soon" role="menuitem" tabindex="-1">Coming Soon</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#contact" role="menuitem" tabindex="-1">Contact Us</a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
         <!-- Search Start -->
         <div class="dropdown header-search-bar">
           <form action="#">
-            <span class="" data-toggle="dropdown"><i class="fa fa-search" aria-hidden="true"></i></span>
+            <span class="" data-toggle="dropdown">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
             <input type="search" placeholder="kyewords.." class="dropdown-menu search-box">
           </form>
         </div>
         <!-- Search End -->
-
         <!-- Main menu start -->
         <nav class="mainmenu">
           <ul id="navigation">
-
-             <li class="nav-active"><a href="<%= root_path(@home) %>">Home</a>
-             </li>
-             <li><a href="<%= service_path(@service) %>">Services</a>
-                <ul>
-                   <li><a href="<%= air_freight_path(@air_freight) %>">Air Freight Shipping</a></li>
-                   <li><a href="<%= ocean_shipping_path(@ocean_shipping) %>">Ocean Freight Shipping</a></li>
-                   <li><a href="<%= car_shipping_path(@car_shipping) %>">Car Shipping</a></li>
-                </ul>
-             </li>
-             <li><a href="<%= shipping_path(@shipping) %>">Shipping</a>
-                <ul>
-                   <li><a href="<%= new_shipping_path(@new_shipping) %>">Create New Shipment</a></li>
-                   <li><a href="<%= current_shipment_path(@current_shipment) %>">Current Shipment list</a></li>
-                   <li><a href="<%= shipment_history_path(@shipment_history) %>">Shipment History</a></li>
-                </ul>
-             </li>
-             <li><a href="#">Tracking</a>
-                <ul>
-                   <li><a href="<%= shipment_tracking_path(@shipment_tracking) %>">Tracking</a></li>
-                   <li><a href="<%= shipment_status_path(@shipment_tracking) %>">Shipment Status</a></li>
-                </ul>
-             </li>
-             <li><a href="<%= blog_path(@blog) %>">Blog</a></li>
-             <li><a href="<%= about_path(@about) %>">About Us</a></li>
-             <li><a href="<%= contact_path(@contact) %>">Contact Us</a></li>
+            <li class="nav-active">
+              <a href="<%= root_path(@home) %>">Home </a>
+            </li>
+            <li>
+              <a href="<%= service_path(@service) %>">Services </a>
+              <ul>
+                <li>
+                  <a href="<%= air_freight_path(@air_freight) %>">Air Freight Shipping </a>
+                </li>
+                <li>
+                  <a href="<%= ocean_shipping_path(@ocean_shipping) %>">Ocean Freight Shipping </a>
+                </li>
+                <li>
+                  <a href="<%= car_shipping_path(@car_shipping) %>">Car Shipping </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="<%= shipping_path(@shipping) %>">Shipping </a>
+              <ul>
+                <li>
+                  <a href="<%= new_shipping_path(@new_shipping) %>">Create New Shipment </a>
+                </li>
+                <li>
+                  <a href="<%= current_shipment_path(@current_shipment) %>">Current Shipment list </a>
+                </li>
+                <li>
+                  <a href="<%= shipment_history_path(@shipment_history) %>">Shipment History </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Tracking</a>
+              <ul>
+                <li>
+                  <a href="<%= shipment_tracking_path(@shipment_tracking) %>">Tracking </a>
+                </li>
+                <li>
+                  <a href="<%= shipment_status_path(@shipment_tracking) %>">Shipment Status </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="<%= blog_path(@blog) %>">Blog </a>
+            </li>
+            <li>
+              <a href="<%= about_path(@about) %>">About Us </a>
+            </li>
+            <li>
+              <a href="<%= contact_path(@contact) %>">Contact Us </a>
+            </li>
           </ul>
         </nav>
         <!-- Main menu end -->
       </div>
     </div>
     <!-- Header area End -->
-
   </header>
